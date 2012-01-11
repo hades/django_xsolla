@@ -42,8 +42,7 @@ def xsolla_request(func):
     return wrapper
 
 def check_md5(md5, *args):
-    return True
-#    return md5.lower() == hashlib.md5(''.join(args)).hexdigest().lower()
+    return md5.lower() == hashlib.md5(''.join(args)).hexdigest().lower()
 
 @xsolla_request
 def payment(request):
@@ -69,7 +68,10 @@ def payment(request):
             bonus = request.GET.get('bonus', '')
             md5 = request.GET['md5']
 
-            date = datetime.strptime(date, '%Y%m%d%H%M%S')
+            try:
+                date = datetime.strptime(date, '%Y%m%d%H%M%S')
+            except ValueError, e:
+                date = datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
 
             if not check_md5(md5, command, v1, i, SECRET_KEY):
                 return {'result': 3, 'comment': 'invalid signature'}
