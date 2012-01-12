@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 class Transaction(models.Model):
     v1 = models.CharField(max_length=32)
@@ -10,3 +11,9 @@ class Transaction(models.Model):
     test = models.BooleanField()
     bonus = models.CharField(max_length=32)
     ident = models.CharField(max_length=32)
+
+    class Meta:
+        get_latest_by = 'rcvd_at'
+        ordering = ('-rcvd_at',)
+        verbose_name = _("Transaction")
+        verbose_name_plural = _("Transactions")
