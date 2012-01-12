@@ -12,6 +12,9 @@ class Transaction(models.Model):
     bonus = models.CharField(max_length=32)
     ident = models.CharField(max_length=32)
 
+    def __unicode__(self):
+        return u"xsolla transfer by {0} id {1}".format(self.v1, self.ident)
+
     class Meta:
         get_latest_by = 'rcvd_at'
         ordering = ('-rcvd_at',)
