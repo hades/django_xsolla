@@ -62,7 +62,7 @@ def payment(request):
             v2 = request.GET.get('v2', '')
             v3 = request.GET.get('v3', '')
             i = request.GET['id']
-            summ = Decimal(request.GET['sum'])
+            summ = Decimal(request.GET['sum']).quantize(Decimal("1.00"))
             date = request.GET['date']
             test = int(request.GET.get('test', 0))
             bonus = request.GET.get('bonus', '')
