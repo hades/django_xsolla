@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 class Transaction(models.Model):
+    """Model, representing an XSolla transaction."""
     v1 = models.CharField(max_length=32)
     v2 = models.CharField(max_length=32, blank=True)
     v3 = models.CharField(max_length=32, blank=True)
