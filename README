@@ -1,0 +1,51 @@
+Django XSolla (2pay.ru) integration
+===================================
+
+This is a Django application that implements XSolla Virtual Currency
+Protocol[1].
+
+To use it, add the application to the INSTALLED_APPS section of your
+settings.py, and a URL to the views.payment view. This view implements the
+"payment script" as per protocol specification.
+
+For example, if you have the following line in your urls.py:
+
+ url(r'^payment/$', 'django_xsolla.views.payment'),
+
+Then you should use the following URL as your payment script in XSolla project
+settings:
+
+ http://yoursite.com/payment/
+
+You also need to provide the XSolla secret key in a settings.py variable
+DJANGO_XSOLLA_SECRET_KEY.
+
+Note, that by default, django_xsolla verifies that the "v1" parameter is a valid
+django.contrib.auth user id. If you do not want this, remove the corresponding
+code from views.py.
+
+
+AUTHORS
+=======
+
+ * Edward "hades" Toroshchin <django-xsolla@hades.name>
+
+
+BUGS
+====
+
+If you find any, please report them on Github issues page [2].
+
+
+LICENSE
+=======
+
+This project is licensed under BSD License, as is Django itself. See COPYING
+file for details.
+
+
+REFERENCES
+==========
+
+[1] http://xsolla.com/docs/virtual-currency-protocol/implementing-the-payment-script
+[2] https://github.com/hades/django_xsolla
